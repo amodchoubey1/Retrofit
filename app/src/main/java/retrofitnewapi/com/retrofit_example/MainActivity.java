@@ -16,14 +16,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listView;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.listVie);
-        // to get image from server and load to listview
+        // To get image from server and load to listview.
         getPhoto();
     }
 
@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<ImagePojo>> call, Response<List<ImagePojo>> response) {
                 List<ImagePojo> heroList = response.body();
 
-                //Creating an String array for the ListView
+                // Creating an String array for the ListView
                 String[] heroes = new String[heroList.size()];
 
-                //looping through all the heroes and inserting the names inside the string array
+                // Looping through all the heroes and inserting the names inside the string array
                 for (int i = 0; i < heroList.size(); i++) {
                     heroes[i] = heroList.get(i).getTitle();
                 }
-                //displaying the string array into listview
+                // Displaying the string array into listview
                 listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, heroes));
             }
 
